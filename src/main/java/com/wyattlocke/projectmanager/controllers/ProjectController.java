@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wyattlocke.projectmanager.models.Checklist;
@@ -72,4 +74,30 @@ public class ProjectController {
 		
 		return "redirect:/";
 	}
+	
+	//Render Edit Project
+	@GetMapping("/project/edit/{id}")
+	public String editProject(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("project", projectService.findProject(id));
+		return "editProject.jsp";
+	}
+	
+	//Process Edit Project
+	@PutMapping("/project/edit/{id}")
+	public String EditProject(@Valid @ModelAttribute("project") Project project, BindingResult result) {
+		if(result.hasErrors()) {
+			return "editProject.jsp";
+		}
+		projectService.updateProject(project);
+		return "redirect:/project/{id}";
+	}
+	
+	//Delete Project
+	@DeleteMapping("project/delete/{id}")
+	public String destroyProject(@PathVariable("id") Long id) {
+		projectService.deleteProject(id);
+		return "redirect:/";
+	}
+	
+	
 }

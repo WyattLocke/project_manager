@@ -29,7 +29,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="mb-4">
+		<div class="mb-4 w-50 m-auto">
 			<div class="m-auto mt-3">
 				<h2 class="text-center">Previous Projects</h2>
 				<table class="table table-striped">

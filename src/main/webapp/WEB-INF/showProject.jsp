@@ -21,6 +21,9 @@
 			</div>
 		</div>
 		<div class="mb-5">
+			<a href="/project/edit/${project.id}"><button class="btn btn-primary">Edit Project</button></a>
+		</div>
+		<div class="mb-5">
 			<h3>Sponsors:</h3>
 			<table class="table table-striped">
 				<thead>
