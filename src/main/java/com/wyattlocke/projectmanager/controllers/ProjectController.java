@@ -84,7 +84,7 @@ public class ProjectController {
 	
 	//Process Edit Project
 	@PutMapping("/project/edit/{id}")
-	public String EditProject(@Valid @ModelAttribute("project") Project project, BindingResult result) {
+	public String editProject(@Valid @ModelAttribute("project") Project project, BindingResult result) {
 		if(result.hasErrors()) {
 			return "editProject.jsp";
 		}

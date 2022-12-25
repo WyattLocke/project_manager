@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.wyattlocke.projectmanager.models.Sponsor;
 import com.wyattlocke.projectmanager.services.ProjectService;
@@ -43,6 +44,27 @@ public class SponsorController {
 		sponsorService.createSponsor(sponsor);
 		return "redirect:/project/{projectId}";
 	}
+	
+	//Render Edit Sponsor
+	@GetMapping("/sponsor/edit/{projectId}/{id}")
+	public String editSponsor(@PathVariable("id") Long id,
+			@PathVariable("projectId") Long projectId, Model model) {
+		model.addAttribute("sponsor", sponsorService.findSponsor(id));
+		model.addAttribute("project", projectService.findProject(projectId));
+		return "editSponsor.jsp";
+	}
+	
+	//Process Edit Sponsor
+	@PutMapping("/sponsor/edit/{projectId}/{id}")
+	public String editSponsor(@Valid @ModelAttribute("sponsor") Sponsor sponsor,
+			BindingResult result) {
+		if(result.hasErrors()) {
+			return "editSponsor.jsp";
+		}
+		sponsorService.updateSponsor(sponsor);
+		return "redirect:/project/{projectId}";
+	}
+	
 	
 	//Delete
 	@DeleteMapping("/sponsor/delete/{projectId}/{sponsorId}")

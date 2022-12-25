@@ -40,7 +40,11 @@
 						<td><c:out value="${sponsor.name}"/></td>
 						<td><c:out value="${sponsor.tier}"/></td>
 						<td>$<c:out value="${sponsor.amount}"/></td>
-						<td>
+						<td class="d-flex">
+							<form action="/sponsor/edit/${project.id}/${sponsor.id}" class="me-2">
+								<input type="hidden" name="_method" value="put"/>
+								<button class="btn btn-success">Edit</button>
+							</form>
 							<form action="/sponsor/delete/${project.id}/${sponsor.id}" method="post">
 								<input type="hidden" name="_method" value="delete"/>
 								<button class="btn btn-danger">Delete</button>
