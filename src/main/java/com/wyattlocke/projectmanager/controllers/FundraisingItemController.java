@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.wyattlocke.projectmanager.models.FundraisingItem;
 import com.wyattlocke.projectmanager.services.FundraisingItemService;
@@ -42,6 +43,25 @@ public class FundraisingItemController {
 			return "newItem.jsp";
 		}
 		itemService.createItem(fundraisingItem);
+		return "redirect:/project/{projectId}";
+	}
+	
+	//Render Edit Fund
+	@GetMapping("item/edit/{projectId}/{id}")
+	public String editItem(@PathVariable("id") Long id, @PathVariable("projectId") Long projectId,
+			Model model) {
+			model.addAttribute("item", itemService.findItem(id));
+			model.addAttribute("project", projectService.findProject(projectId));
+		return "editItem.jsp";
+	}
+	
+	//Process Edit Fund
+	@PutMapping("/item/edit/{projectId}/{id}")
+	public String editItem(@Valid @ModelAttribute("item") FundraisingItem item, BindingResult result) {
+		if(result.hasErrors()) {
+			return "editItem.jsp";
+		}
+		itemService.updateItem(item);
 		return "redirect:/project/{projectId}";
 	}
 	

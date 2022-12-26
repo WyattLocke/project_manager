@@ -41,10 +41,7 @@
 						<td><c:out value="${sponsor.tier}"/></td>
 						<td>$<c:out value="${sponsor.amount}"/></td>
 						<td class="d-flex">
-							<form action="/sponsor/edit/${project.id}/${sponsor.id}" class="me-2">
-								<input type="hidden" name="_method" value="put"/>
-								<button class="btn btn-success">Edit</button>
-							</form>
+							<a href="/sponsor/edit/${project.id}/${sponsor.id}"><button class="btn btn-success me-2">Edit</button></a>
 							<form action="/sponsor/delete/${project.id}/${sponsor.id}" method="post">
 								<input type="hidden" name="_method" value="delete"/>
 								<button class="btn btn-danger">Delete</button>
@@ -224,7 +221,8 @@
 							<tr>
 								<td><c:out value="${item.name}"/></td>
 								<td>$<c:out value="${item.value}"/></td>
-								<td>
+								<td class="d-flex">
+									<a href="/item/edit/${project.id}/${item.id}"><button class="btn btn-success me-2">Edit</button></a>
 									<form action="/item/delete/${project.id}/${item.id}" method="post">
 										<input type="hidden" name="_method" value="delete"/>
 										<button class="btn btn-danger">Delete</button>
