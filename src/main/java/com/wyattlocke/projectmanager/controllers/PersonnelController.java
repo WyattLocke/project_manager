@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.wyattlocke.projectmanager.models.Personnel;
 import com.wyattlocke.projectmanager.services.PersonnelService;
@@ -41,6 +42,27 @@ public class PersonnelController {
 			return "newPersonnel.jsp";
 		}
 		personnelService.createPersonnel(personnel);
+		return "redirect:/project/{projectId}";
+	}
+	
+	//Render Edit Personnel
+	@GetMapping("/personnel/edit/{projectId}/{id}")
+	public String editPersonnel(@PathVariable("id") Long id, @PathVariable("projectId") Long projectId,
+			Model model) {
+		model.addAttribute("personnel", personnelService.findPersonnel(id));
+		model.addAttribute("project", projectService.findProject(projectId));
+		
+		return "editPersonnel.jsp";
+	}
+	
+	//Process Edit Personnel
+	@PutMapping("/personnel/edit/{projectId}/{id}")
+	public String editPersonnel(@Valid @ModelAttribute("personnel") Personnel personnel,
+			BindingResult result) {
+		if(result.hasErrors()) {
+			return "editPersonnel.jsp";
+		}
+		personnelService.updatePersonnel(personnel);
 		return "redirect:/project/{projectId}";
 	}
 	

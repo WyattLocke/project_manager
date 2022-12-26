@@ -254,7 +254,8 @@
 									<td><c:out value="${person.firstName}"/></td>
 									<td><c:out value="${person.lastName}"/></td>
 									<td><c:out value="${person.contact}"/></td>
-									<td>
+									<td class="d-flex">
+										<a href="/personnel/edit/${project.id}/${person.id}"><button class="btn btn-success me-2">Edit</button></a>
 										<form action="/personnel/delete/${project.id}/${person.id}" method="post">
 											<input type="hidden" name="_method" value="delete"/>
 											<button class="btn btn-danger">Delete</button>
@@ -284,7 +285,8 @@
 									<td><c:out value="${person.firstName}"/></td>
 									<td><c:out value="${person.lastName}"/></td>
 									<td><c:out value="${person.contact}"/></td>
-									<td>
+									<td class="d-flex">
+										<a href="/personnel/edit/${project.id}/${person.id}"><button class="btn btn-success me-2">Edit</button></a>
 										<form action="/personnel/delete/${project.id}/${person.id}" method="post">
 											<input type="hidden" name="_method" value="delete"/>
 											<button class="btn btn-danger">Delete</button>
@@ -314,7 +316,8 @@
 									<td><c:out value="${person.firstName}"/></td>
 									<td><c:out value="${person.lastName}"/></td>
 									<td><c:out value="${person.contact}"/></td>
-									<td>
+									<td class="d-flex">
+										<a href="/personnel/edit/${project.id}/${person.id}"><button class="btn btn-success me-2">Edit</button></a>
 										<form action="/personnel/delete/${project.id}/${person.id}" method="post">
 											<input type="hidden" name="_method" value="delete"/>
 											<button class="btn btn-danger">Delete</button>
